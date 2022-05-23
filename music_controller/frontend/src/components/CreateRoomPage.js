@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import { useState } from "react";
 
-export default class CreateRoomPage extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render () {
-        return <p>This is the create room page</p>
-    }
+function CreateRoomPage (props) {
+    return (
+        <p>Create A Room</p>
+    );
 }
+
+export default CreateRoomPage;

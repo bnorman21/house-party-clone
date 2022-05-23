@@ -1,37 +1,15 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
 import HomePage from './HomePage';
-import RoomJoinPage from './RoomJoinPage'
-import CreateRoomPage from "./CreateRoomPage"
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    Redirect
-} from "react-router-dom";
+import { useState, useEffect } from "react";
 
-export default class App extends Component {
-    //components can render other components
-    constructor(props) {
-        super(props);
-        //remember whenever state is modified it will re-render component
-    }
+function App() {
 
-    render() {
-        return (
-            <Router>
-                <Switch>
-                   <Route exact path="/" component={HomePage} />
-                    <Route path="/join" component={RoomJoinPage} />
-                    <Route path="/create" component={CreateRoomPage} />
-                </Switch>
-            </Router>
+    return (
+        <div>
+            <HomePage />
+        </div>
+    );
 
-        );
 
-    }
 }
 
-const appDiv = document.getElementById("app");
-render(<App />, appDiv);
+export default App;

@@ -1,11 +1,8 @@
-import React, { Component } from 'react';
+import { useState } from "react";
 
-export default class RoomJoinPage extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render () {
-        return <p>This is the room join page</p>
-    }
+function RoomJoinPage (props) {
+    return (
+        <p>This is the room join page</p>
+    );
 }
+export default RoomJoinPage;
