@@ -1,37 +1,25 @@
 import React from "react";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import RoomJoinPage from "./RoomJoinPage";
 import CreateRoomPage from "./CreateRoomPage";
 
 function App() {
-    return (
-        <div>
-            <p>This is the home page</p>
-        </div>
-    );
+  return <div>This is the home page</div>;
 }
 
-const container = document.getElementById('app');
+const container = document.getElementById("app");
 const root = createRoot(container);
 root.render(
-    <React.StrictMode>
+  <React.StrictMode>
     <BrowserRouter>
-        <Routes>
-            <Route path="/" element={ <App /> }>
-            </Route>
-            <Route path="create" element={ <CreateRoomPage />}>
-            </Route>
-            <Route path="join" element={<RoomJoinPage /> }>
-            </Route>
-        </Routes>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="create" element={<CreateRoomPage />} />
+        <Route path="join" element={<RoomJoinPage />} />
+      </Routes>
     </BrowserRouter>
-    </React.StrictMode>
+  </React.StrictMode>
 );
-
 
 export default App;
