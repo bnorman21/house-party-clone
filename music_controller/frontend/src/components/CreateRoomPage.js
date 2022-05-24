@@ -11,19 +11,22 @@ import {
 } from "@mui/material";
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 let defaultVotes = 2;
 
 function CreateRoomPage(props) {
   const [guestCanPause, setGuestCanPause] = useState(false);
   const [votesToSkip, setVotesToSkip] = useState(2);
+  let navigate = useNavigate();
 
   const handleVotesChange = (e) => {
     setVotesToSkip(e.target.value);
   };
 
   const handleGuestCanPauseChange = (e) => {
-    setGuestCanPause(e.target.value === "true");
+    let canPause = e.target.value === "true";
+    setGuestCanPause(canPause);
   };
 
   const handleRoomButtonPressed = () => {
@@ -37,7 +40,7 @@ function CreateRoomPage(props) {
     };
     fetch("/api/create-room", requestOptions)
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => navigate("/room/" + data.code));
   };
   return (
     <Grid container spacing={1}>
@@ -51,7 +54,7 @@ function CreateRoomPage(props) {
           <FormHelperText>Guest Control of Playback State</FormHelperText>
           <RadioGroup
             row
-            defaultValue="true"
+            defaultValue="false"
             onChange={handleGuestCanPauseChange}
           >
             <FormControlLabel
