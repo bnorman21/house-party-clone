@@ -6,7 +6,7 @@ import CreateRoomPage from "./CreateRoomPage";
 import Room from "./Room";
 
 function App() {
-  return <div>This is the home page</div>;
+  return <div className="center">This is the home page</div>;
 }
 
 const container = document.getElementById("app");

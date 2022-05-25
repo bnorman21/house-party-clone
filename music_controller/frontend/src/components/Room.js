@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
-import { stringify } from "../../../../env/lib/python3.7/site-packages/rest_framework/static/rest_framework/js/coreapi-0.1.1";
 
 function Room(props) {
   const [votesToSkip, setVotesToSkip] = useState(2);
@@ -25,13 +24,13 @@ function Room(props) {
 
   if (loading) {
     return (
-      <div>
+      <div className="center">
         <CircularProgress />
       </div>
     );
   } else {
     return (
-      <div>
+      <div className="center">
         <h3>{roomCode}</h3>
         <p>Votes: {votesToSkip}</p>
         <p>Guest Can Pause: {guestCanPause ? "true" : "false"}</p>
