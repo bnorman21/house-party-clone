@@ -23,6 +23,17 @@ function App() {
         setLoading(false);
       });
   }, []);
+
+  const checkRoomCode = () => {
+    setLoading(true);
+    fetch("/api/user-in-room")
+      .then((response) => response.json())
+      .then((data) => {
+        setRoomCode(data.code);
+        setLoading(false);
+      });
+  };
+
   if (loading) {
     return (
       <div className="center">
