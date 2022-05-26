@@ -43,64 +43,62 @@ function CreateRoomPage(props) {
       .then((data) => navigate("/room/" + data.code));
   };
   return (
-    <div className="center">
-      <Grid container spacing={1}>
-        <Grid item xs={12} align="center">
-          <Typography component="h4" variant="h4">
-            Create A Room
-          </Typography>
-        </Grid>
-        <Grid item xs={12} align="center">
-          <FormControl component="fieldset">
-            <FormHelperText>Guest Control of Playback State</FormHelperText>
-            <RadioGroup
-              row
-              defaultValue="false"
-              onChange={handleGuestCanPauseChange}
-            >
-              <FormControlLabel
-                value="true"
-                control={<Radio color="primary" />}
-                label="Play/Pause"
-                labelPlacement="bottom"
-              />
-              <FormControlLabel
-                value="false"
-                control={<Radio color="secondary" />}
-                label="No Control"
-                labelPlacement="bottom"
-              />
-            </RadioGroup>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12} align="center">
-          <FormControl>
-            <TextField
-              required={true}
-              type="number"
-              onChange={handleVotesChange}
-              defaultValue={votesToSkip}
-              inputProps={{ min: 1, style: { textAlign: "center" } }}
-            />
-            <FormHelperText>Votes Required to Skip Song</FormHelperText>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12} align="center">
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={handleRoomButtonPressed}
-          >
-            Create A Room
-          </Button>
-        </Grid>
-        <Grid item xs={12} align="center">
-          <Button color="secondary" href="/" variant="contained">
-            Back
-          </Button>
-        </Grid>
+    <Grid container spacing={1}>
+      <Grid item xs={12} align="center">
+        <Typography component="h4" variant="h4">
+          Create A Room
+        </Typography>
       </Grid>
-    </div>
+      <Grid item xs={12} align="center">
+        <FormControl component="fieldset">
+          <FormHelperText>Guest Control of Playback State</FormHelperText>
+          <RadioGroup
+            row
+            defaultValue="false"
+            onChange={handleGuestCanPauseChange}
+          >
+            <FormControlLabel
+              value="true"
+              control={<Radio color="primary" />}
+              label="Play/Pause"
+              labelPlacement="bottom"
+            />
+            <FormControlLabel
+              value="false"
+              control={<Radio color="secondary" />}
+              label="No Control"
+              labelPlacement="bottom"
+            />
+          </RadioGroup>
+        </FormControl>
+      </Grid>
+      <Grid item xs={12} align="center">
+        <FormControl>
+          <TextField
+            required={true}
+            type="number"
+            onChange={handleVotesChange}
+            defaultValue={votesToSkip}
+            inputProps={{ min: 1, style: { textAlign: "center" } }}
+          />
+          <FormHelperText>Votes Required to Skip Song</FormHelperText>
+        </FormControl>
+      </Grid>
+      <Grid item xs={12} align="center">
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={handleRoomButtonPressed}
+        >
+          Create A Room
+        </Button>
+      </Grid>
+      <Grid item xs={12} align="center">
+        <Button color="secondary" href="/" variant="contained">
+          Back
+        </Button>
+      </Grid>
+    </Grid>
   );
 }
 
