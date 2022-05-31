@@ -74,7 +74,10 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="create" element={<CreateRoomPage />} />
+        <Route
+          path="create"
+          element={<CreateRoomPage guestCanPause={false} />}
+        />
         <Route path="join" element={<RoomJoinPage />} />
         <Route path="/room/:roomCode" element={<Room />} />
       </Routes>

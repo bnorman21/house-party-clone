@@ -124,6 +124,7 @@ class UpdateRoom(APIView):
             self.request.session.create()
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
+
             guest_can_pause = serializer.data.get('guest_can_pause')
             votes_to_skip = serializer.data.get('votes_to_skip')
             code = serializer.data.get('code')
@@ -137,7 +138,7 @@ class UpdateRoom(APIView):
             if room.host != user_id:
                 return Response({'msg': 'You are not host'}, status=status.HTTP_403_FORBIDDEN)
 
-            room.quest_can_pause = guest_can_pause
+            room.guest_can_pause = guest_can_pause
             room.votes_to_skip = votes_to_skip
             room.save(update_fields=['guest_can_pause', 'votes_to_skip'])
             return Response(RoomSerializer(room).data, status=status.HTTP_200_OK)

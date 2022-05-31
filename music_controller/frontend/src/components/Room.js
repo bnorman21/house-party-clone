@@ -15,6 +15,10 @@ function Room(props) {
 
   //to run when component mounts
   useEffect(() => {
+    getRoomDetails();
+  }, []);
+
+  const getRoomDetails = () => {
     fetch("/api/get-room" + "?code=" + roomCode)
       .then((response) => response.json())
       .then((data) => {
@@ -26,7 +30,7 @@ function Room(props) {
         setIsHost(data.is_host);
         setLoading(false);
       });
-  }, []);
+  };
 
   const leaveButtonPressed = () => {
     const requestOptions = {
@@ -51,7 +55,7 @@ function Room(props) {
             votesToSkip={votesToSkip}
             guestCanPause={guestCanPause}
             roomCode={roomCode}
-            updateCallback={() => {}}
+            updateCallback={getRoomDetails}
           />
         </Grid>
         <Grid item xs={12} align="center">
@@ -105,7 +109,7 @@ function Room(props) {
           </Grid>
           <Grid item xs={12} align="center">
             <Typography variant="h6" component="h6">
-              Code: {roomCode}
+              Guest Can Pause: {guestCanPause.toString()}
             </Typography>
           </Grid>
           <Grid item xs={12} align="center">
