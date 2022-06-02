@@ -9,9 +9,12 @@ function Room(props) {
   const [isHost, setIsHost] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [spotifyAuth, setSpotifyAuth] = useState(false);
 
   let { roomCode } = useParams();
   let navigate = useNavigate();
+
+  // if we are the host of the room then we need to authenticate our spotify right away
 
   //to run when component mounts
   useEffect(() => {
@@ -27,8 +30,33 @@ function Room(props) {
         }
         setVotesToSkip(data.votes_to_skip);
         setGuestCanPause(data.guest_can_pause);
+
         setIsHost(data.is_host);
         setLoading(false);
+        if (data.is_host) {
+          console.log("hello from inside isHost");
+          authSpotify();
+        }
+      });
+  };
+
+  const authSpotify = () => {
+    fetch("/spotify/is-authenticated")
+      .then((response) => response.json())
+      .then((data) => {
+        setSpotifyAuth(data.status);
+        if (!data.status) {
+          fetch("/spotify/get-auth-url")
+            .then((response) => response.json())
+            .then((data) => {
+              //redirect to spotify auth page
+              //after auth page we will be redirected to frontend
+              console.log("not already authenticated");
+              window.location.replace(data.url);
+            });
+        } else {
+          console.log("already authenticated");
+        }
       });
   };
 
