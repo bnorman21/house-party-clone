@@ -4,3 +4,4 @@ env
 .idea
 node_modules
 music_controller/spotify/credentials.py
+music_controller/spotify/__pycache__
