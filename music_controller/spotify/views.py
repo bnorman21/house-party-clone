@@ -5,7 +5,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .credentials import REDIRECT_URI, CLIENT_ID, CLIENT_SECRET
-from .util import update_or_create_user_tokens, is_spotify_authenticated
+from .util import *
+import sys
+
+from api.models import Room
 
 
 # Create your views here.
@@ -13,6 +16,8 @@ from .util import update_or_create_user_tokens, is_spotify_authenticated
 # Request authorization
 # We want this view to return an url we can use on the frontend to interact with the spotify app
 # From our frontend we are going to call this API endpoint
+
+
 class AuthURL(APIView):
     def get(self, request, format=None):
         scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing'
@@ -50,7 +55,6 @@ def spotify_callback(request, format=None):
     access_token = response.get('access_token')
     token_type = response.get('token_type')
     refresh_token = response.get('refresh_token')
-    print(f'refresh_token from spotify.views: {refresh_token}')
     expires_in = response.get('expires_in')
     error = response.get('error')
 
@@ -68,3 +72,49 @@ class isAuthenticated(APIView):
         is_authenticated = is_spotify_authenticated(
             self.request.session.session_key)
         return Response({'status': is_authenticated}, status=status.HTTP_200_OK)
+
+
+class CurrentSong(APIView):
+    def get(self, request, format=None):
+        room_code = self.request.session.get('room_code')
+
+        room = Room.objects.filter(code=room_code)
+        if room.exists():
+            room = room[0]
+        else:
+            return Response({}, status=status.HTTP_404_NOT_FOUND)
+        host = room.host
+        endpoint = "player/currently-playing"
+        # whenever we send a request to spotify we need to include our token
+        response = execute_spotify_api_request(host, endpoint)
+
+        if 'error' in response or 'item' not in response:
+            return Response({}, status.HTTP_204_NO_CONTENT)
+
+        item = response.get('item')
+        duration = item.get('duration_ms')
+        progress = response.get('progress_ms')
+        album_cover = item.get('album').get('images')[0].get('url')
+        is_playing = response.get('is_playing')
+        song_id = item.get('id')
+        # multiple artists might be present
+        artist_string = ""
+
+        for i, artist in enumerate(item.get('artists')):
+            if i > 0:
+                artist_string += ", "
+            name = artist.get('name')
+            artist_string += name
+
+        song = {
+            'title': item.get('name'),
+            'artist': artist_string,
+            'duration': duration,
+            'time': progress,
+            'image_url': album_cover,
+            'is_playing': is_playing,
+            'votes': 0,
+            'id': song_id
+        }
+
+        return Response(song, status=status.HTTP_200_OK)
