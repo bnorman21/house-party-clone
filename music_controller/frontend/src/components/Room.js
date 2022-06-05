@@ -80,10 +80,8 @@ function Room(props) {
         }
       })
       .then((data) => {
-        if (data !== {}) {
-          setSong(data);
-          console.log(data);
-        }
+        setSong(data);
+        console.log(data);
       });
   };
 
