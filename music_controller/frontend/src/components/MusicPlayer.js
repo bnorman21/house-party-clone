@@ -25,6 +25,13 @@ function MusicPlayer(props) {
     };
     fetch("/spotify/pause", requestOptions);
   };
+  const skipSong = () => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    };
+    fetch("/spotify/skip", requestOptions);
+  };
 
   if (content_present) {
     return (
@@ -53,8 +60,8 @@ function MusicPlayer(props) {
               >
                 {props.is_playing ? <PauseCircle /> : <PlayCircle />}
               </IconButton>
-              <IconButton>
-                <SkipNext />
+              <IconButton onClick={() => skipSong()}>
+                <SkipNext /> {props.votes} / {props.votes_required}
               </IconButton>
             </div>
           </Grid>
