@@ -24,9 +24,12 @@ _Spotify API_
 - `cd music_controller/spotify`
 - `touch credentials.py`
 - paste below into credentials.py
-`CLIENT_ID = "Paste Value Here"
-CLIENT_SECRET = "Paste Value Here"
-REDIRECT_URI = "Paste Link Here"`
+
+`CLIENT_ID = "Paste Value Here"`
+
+`CLIENT_SECRET = "Paste Value Here"`
+
+`REDIRECT_URI = "Paste Link Here"`
 
 **Run Locally**
 - `cd house_party`
