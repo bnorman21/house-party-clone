@@ -1,36 +1,39 @@
 # houseparty-react-django-app
 
 **Setup**
+
 _Backend_
-`cd house_party`
-`python3 -m venv env ` 
-`source env/bin/activate` 
-`pip install django djangorestframework requests`
+- `cd house_party`
+- `python3 -m venv env ` 
+- `source env/bin/activate` 
+- `pip install django djangorestframework requests`
+
 _Frontend_
-`cd house_party/music_controller/frontend`
-`npm init -y`
-`npm i webpack webpack-cli --save-dev`
-`npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev`
-`npm i react react-dom --save-dev`
-`npm install @babel/plugin-proposal-class-properties`
-`npm install react-router-dom`
-`npm install @mui/material @mui/icons-material @emotion/react @emotion/styled `
+- `cd house_party/music_controller/frontend`
+- `npm init -y`
+- `npm i webpack webpack-cli --save-dev`
+- `npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev`
+- `npm i react react-dom --save-dev`
+- `npm install @babel/plugin-proposal-class-properties`
+- `npm install react-router-dom`
+- `npm install @mui/material @mui/icons-material @emotion/react @emotion/styled `
+
 _Spotify API_
-Use link https://developer.spotify.com/documentation/web-api/quick-start/ to set up a developer account
-Set up a client id, client secret, and a redirect link
-`cd music_controller/spotify`
-`touch credentials.py`
-paste below into credentials.py
+- Use link https://developer.spotify.com/documentation/web-api/quick-start/ to set up a developer account
+- Set up a client id, client secret, and a redirect link
+- `cd music_controller/spotify`
+- `touch credentials.py`
+- paste below into credentials.py
 `CLIENT_ID = "Paste Value Here"
 CLIENT_SECRET = "Paste Value Here"
 REDIRECT_URI = "Paste Link Here"`
 
 **Run Locally**
-`cd house_party`
-`python3 manage.py runserver`
-_new terminal_
-`cd house_party/music_controller/frontend`
-`npm run-script dev `
+- `cd house_party`
+- `python3 manage.py runserver`
+- _new terminal_
+- `cd house_party/music_controller/frontend`
+- `npm run-script dev `
 
 
 
