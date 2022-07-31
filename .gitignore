@@ -1,7 +1,6 @@
-README.md
 env
 .DS_Store
 .idea
 node_modules
 music_controller/spotify/credentials.py
-music_controller/spotify/__pycache__
+__pycache__

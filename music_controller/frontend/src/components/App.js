@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import RoomJoinPage from "./RoomJoinPage";
 import CreateRoomPage from "./CreateRoomPage";
+import Info from "./Info";
 import Room from "./Room";
 import {
   Button,
@@ -54,6 +55,9 @@ function App() {
               <Button color="primary" href="/join">
                 Join a Room
               </Button>
+              <Button color="info" href="/info">
+                Info
+              </Button>
               <Button color="secondary" href="/create">
                 Create a Room
               </Button>
@@ -74,6 +78,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/info" element={<Info />} />
         <Route
           path="create"
           element={<CreateRoomPage guestCanPause={false} />}
